@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the msingif_page feature.
+ */
+
+include_once('msingif_page.features.inc');
