@@ -9,6 +9,27 @@ include_once('msingif_carousel.features.inc');
 
 
 /**
+ * Implements hook_menu()
+ */
+function msingif_carousel_menu() {
+  $items = array();
+  
+  $items['admin/config/msingif/carousel'] = array(
+    'title'            => 'Carousel',
+    'description'      => 'Configure carousel settings.',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('msingif_carousel_settings_form'),
+    'access arguments' => array('access administration pages'),
+    'file'             => 'msingif_carousel.admin.inc',
+    'weight'           => 0,
+  );
+  
+  return $items;
+}
+
+
+
+/**
  * Image style: default style + settings
  *****************************************************************************/
 /**
@@ -31,8 +52,8 @@ function msingif_carousel_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '620',
-          'height' => '400',
+          'width'  => variable_get('msingif_carousel_image_width', 620),
+          'height' => variable_get('msingif_carousel_image_height', 400),
         ),
         'weight' => '1',
       ),

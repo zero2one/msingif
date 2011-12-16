@@ -20,7 +20,7 @@ The features set contains:
 * Replaces the Drupal core _Basic page_ content type.
 
 ### Front carousel
-* Provides a content type "carousel".
+* Provides a content type _carousel_.
 * Adds a views slidehow powered carousel to the front page.
 
 
