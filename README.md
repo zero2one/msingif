@@ -16,7 +16,12 @@ Features
 --------
 The features set contains:
 
-* Basic page: Replaces the Drupal core _Basic page_ content type.
+### Basic page
+* Replaces the Drupal core _Basic page_ content type.
+
+### Front carousel
+* Provides a content type "carousel".
+* Adds a views slidehow powered carousel to the front page.
 
 
 
