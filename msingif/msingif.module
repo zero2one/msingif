@@ -1,0 +1,25 @@
+<?php
+/**
+ * @file
+ * Code for the General/shared functionalities.
+ */
+
+/**
+ * Implements hook_menu()
+ */
+function msingif_menu() {
+  $items = array();
+  
+  // Media settings.
+  $items['admin/config/msingif'] = array(
+    'title'            => 'Msingi features',
+    'description'      => 'Msingi features configuration.',
+    'position'         => 'left',
+    'weight'           => -10,
+    'page callback'    => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file'             => 'system.admin.inc',
+  );
+  
+  return $items;
+}
