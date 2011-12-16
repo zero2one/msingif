@@ -16,6 +16,9 @@ Features
 --------
 The features set contains:
 
+### General/shared
+* Contains the general & shared functionalities
+
 ### Basic page
 * Replaces the Drupal core _Basic page_ content type.
 
