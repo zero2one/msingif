@@ -77,7 +77,7 @@ function msingif_photos_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '2',
+        'weight' => '3',
       ),
     ),
   );
@@ -130,8 +130,9 @@ function msingif_photos_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
+          'module' => 'node_reference',
           'settings' => array(),
-          'type' => 'hidden',
+          'type' => 'node_reference_default',
           'weight' => '2',
         ),
         'teaser' => array(
@@ -144,7 +145,7 @@ function msingif_photos_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_photo_album',
       'label' => 'Album',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -197,7 +198,7 @@ function msingif_photos_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => '',
+            'image_style' => 'photo_view',
           ),
           'type' => 'image',
           'weight' => '0',
@@ -207,7 +208,7 @@ function msingif_photos_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => '',
+            'image_style' => 'photo_block',
           ),
           'type' => 'image',
           'weight' => '0',
@@ -216,7 +217,7 @@ function msingif_photos_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_photo_photo',
       'label' => 'Photo',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'alt_field' => 0,
         'file_directory' => 'msingif/photo',
@@ -235,7 +236,7 @@ function msingif_photos_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '4',
+        'weight' => '2',
       ),
     ),
   );
