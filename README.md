@@ -17,7 +17,7 @@ Features
 The features set contains:
 
 ### General/shared
-* Contains the general & shared functionalities
+* Contains the general & shared functionalities.
 
 ### Basic page
 * Replaces the Drupal core _Basic page_ content type.
@@ -28,14 +28,21 @@ The features set contains:
 
 ### Events
 * Provides a content type _event_
-* Adds upcoming & past events overviews
-* Adds an upcoming evenets block
+* Adds upcoming & past events overviews.
+* Adds an upcoming evenets block.
 
 ### News
 * Provides a content type _news_
-* Adds a news overview page
-* Adds a news overview block
-* Adds a news navigation block
+* Adds a news overview page.
+* Adds a news overview block.
+* Adds a news navigation block.
+
+### Photos
+* Provides 2 new content types: _photo album_ and _photo_.
+* Adds a photo album overview.
+* Adds photo albums with overview of the photo's.
+* Adds highlighted photos block.
+* Adds a form to upload multiple photo's at once (plupload).
 
 
 

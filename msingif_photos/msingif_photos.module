@@ -1,0 +1,92 @@
+<?php
+/**
+ * @file
+ * Code for the Photos feature.
+ */
+
+include_once('msingif_photos.features.inc');
+
+
+
+/**
+ * Implements hook_image_default_styles().
+ * 
+ * Provides 3 new image styles:
+ * - photo_block : The image style for photo's shown in blocks.
+ * - photo_view  : The image style for photo pages (full size view).
+ * - photo_thumb : The image style for photo overviews.
+ */
+function msingif_photos_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: photo_block
+  $styles['photo_thumb'] = array(
+    'name' => 'photo_block',
+    'effects' => array(
+      1 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width'  => variable_get('msingif_photo_image__thumb_width', 120),
+          'height' => variable_get('msingif_photo_image__thumb_height', 120),
+          'upscale' => 0,
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported image style: photo_block
+  $styles['photo_block'] = array(
+    'name' => 'photo_block',
+    'effects' => array(
+      1 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width'  => variable_get('msingif_photo_image__thumb_width', 280),
+          'height' => variable_get('msingif_photo_image__thumb_height', 280),
+          'upscale' => 0,
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported image style: photo_view
+  $styles['photo_view'] = array(
+    'name' => 'photo_view',
+    'effects' => array(
+      2 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width'  => variable_get('msingif_photo_image__thumb_width', 620),
+          'height' => variable_get('msingif_photo_image__thumb_height', 465),
+          'upscale' => 0,
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  return $styles;
+}
