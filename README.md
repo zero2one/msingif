@@ -26,6 +26,17 @@ The features set contains:
 * Provides a content type _carousel_.
 * Adds a views slidehow powered carousel to the front page.
 
+### Events
+* Provides a content type _event_
+* Adds upcoming & past events overviews
+* Adds an upcoming evenets block
+
+### News
+* Provides a content type _news_
+* Adds a news overview page
+* Adds a news overview block
+* Adds a news navigation block
+
 
 
 Dependencies
