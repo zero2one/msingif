@@ -8,7 +8,13 @@ include_once('msingif_photos.features.inc');
 
 
 /**
- * Implements hook_menu
+ * Implements hook_menu()
+ * 
+ * Paths:
+ *   - node/%node/add-photos : 
+ *     multi photo upload form for photo albums
+ *   - admin/config/msingif/photos : 
+ *     Configuration of the msingif_photos module
  */
 function msingif_photos_menu() {
   $items = array();
@@ -20,6 +26,16 @@ function msingif_photos_menu() {
     'access callback'  => 'msingif_photos_multi_upload_access',
     'access arguments' => array(1),
     'type'             => MENU_LOCAL_TASK
+  );
+  
+  $items['admin/config/msingif/photos'] = array(
+    'title'            => 'Photos',
+    'description'      => 'Configure photos settings.',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('msingif_photos_settings_form'),
+    'access arguments' => array('access administration pages'),
+    'file'             => 'msingif_photos.admin.inc',
+    'weight'           => 0,
   );
   
   return $items;
@@ -142,8 +158,8 @@ function msingif_photos_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width'  => variable_get('msingif_photo_image_thumb_width', 120),
-          'height' => variable_get('msingif_photo_image_thumb_height', 120),
+          'width'  => _msingif_photos_style_get_size('photo_thumb', 'width'),
+          'height' => _msingif_photos_style_get_size('photo_thumb', 'height'),
           'upscale' => 0,
         ),
         'weight' => '1',
@@ -165,8 +181,8 @@ function msingif_photos_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width'  => variable_get('msingif_photo_image_thumb_width', 280),
-          'height' => variable_get('msingif_photo_image_thumb_height', 280),
+          'width'  => _msingif_photos_style_get_size('photo_block', 'width'),
+          'height' => _msingif_photos_style_get_size('photo_block', 'height'),
           'upscale' => 0,
         ),
         'weight' => '1',
@@ -188,8 +204,8 @@ function msingif_photos_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width'  => variable_get('msingif_photo_image_thumb_width', 620),
-          'height' => variable_get('msingif_photo_image_thumb_height', 465),
+          'width'  => _msingif_photos_style_get_size('photo_view', 'width'),
+          'height' => _msingif_photos_style_get_size('photo_view', 'height'),
           'upscale' => 0,
         ),
         'weight' => '1',
@@ -200,3 +216,29 @@ function msingif_photos_image_default_styles() {
   return $styles;
 }
 
+/**
+ * Get the default image style sizes
+ * 
+ * Used to define the default sizes at one place
+ * 
+ * @param $style
+ *   The style name
+ * @param $direction
+ *   The dimensions direction (width or height)
+ */
+function _msingif_photos_style_get_size($style, $direction) {
+  $dimensions = array(
+    'photo_thumb' => array('width' => 120, 'height' => 120),
+    'photo_block' => array('width' => 280, 'height' => 280),
+    'photo_view'  => array('width' => 620, 'height' => 465),
+  );
+  
+  // check if size is supported
+  if(empty($dimensions[$style][$direction])) {
+    return NULL;
+  }
+  
+  $variable_key = 'msingif_photos_style_' . $style . '_' . $direction;
+  
+  return variable_get($variable_key, $dimensions[$style][$direction]); 
+}
