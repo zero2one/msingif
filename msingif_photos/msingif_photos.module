@@ -7,7 +7,116 @@
 include_once('msingif_photos.features.inc');
 
 
+/**
+ * Implements hook_menu
+ */
+function msingif_photos_menu() {
+  $items = array();
+  
+  $items['node/%node/add-photos']  = array(
+    'title'            => 'Add photos',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('msingif_photos_multi_upload_form', 1),
+    'access callback'  => 'msingif_photos_multi_upload_access',
+    'access arguments' => array(1),
+    'type'             => MENU_LOCAL_TASK
+  );
+  
+  return $items;
+}
 
+/**
+* Implements hook_admin_paths().
+*/
+function msingif_photos_admin_paths() {
+  $paths = array(
+    'node/*/add-photos' => TRUE,
+  );
+  return $paths;
+}
+
+
+
+/**
+ * Access callback for the add-photos tab
+ * 
+ * @param  $node
+ * 
+ * @return bool
+ * 
+ * @see msingif_photos_menu()
+ */
+function msingif_photos_multi_upload_access($node) {
+  // check create access
+  if(!user_access('create photo content') && !user_access('administer nodes')) {
+    return FALSE;
+  }
+  
+  // check content type
+  if($node->type !== 'photo_album') {
+    return FALSE;
+  }
+  
+  // check if the user can add photos to the current photo album
+  if(!user_access('administer nodes') 
+    && !user_access('edit any photo_album content')
+  ) {
+    global $user;
+    return ($user->uid === $node->uid);
+  }
+  
+  return TRUE;
+}
+
+
+
+
+/**
+ * Forms
+ ****************************************************************************/
+/**
+ * Form to upload multiple photo's at once for the given photo album
+ * 
+ * Is a wrapper around the _msingif_photos_multi_upload_form() function.
+ * 
+ * @param  $form
+ * @param  $form_state
+ * @param  $photo_album
+ *     The photo album node
+ * 
+ * @return array
+ * 
+ * @see msingif_photos_multi_upload_form_validate()
+ * @see msingif_photos_multi_upload_form_submit()
+ * @ingroup forms
+ */
+function msingif_photos_multi_upload_form(&$form, $form_state, $photo_album) {
+  module_load_include('inc', 'msingif_photos', 'includes/upload_photos');
+  return _msingif_photos_multi_upload_form($form, $form_state, $photo_album);
+}
+
+/**
+ * Submit the multi upload form
+ * 
+ * Is a wrapper around the _msingif_photos_multi_upload_form_submit() function.
+ * 
+ * @param  $form
+ * @param  $form_state
+ * 
+ * @return void
+ * 
+ * @see msingif_photos_multi_upload_form_validate()
+ */
+function msingif_photos_multi_upload_form_submit($form, &$form_state) {
+  module_load_include('inc', 'msingif_photos', 'includes/upload_photos');
+  _msingif_photos_multi_upload_form_submit($form, $form_state);
+}
+
+
+
+/**
+ * Image styles
+ *****************************************************************************/
 /**
  * Implements hook_image_default_styles().
  * 
@@ -33,8 +142,8 @@ function msingif_photos_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width'  => variable_get('msingif_photo_image__thumb_width', 120),
-          'height' => variable_get('msingif_photo_image__thumb_height', 120),
+          'width'  => variable_get('msingif_photo_image_thumb_width', 120),
+          'height' => variable_get('msingif_photo_image_thumb_height', 120),
           'upscale' => 0,
         ),
         'weight' => '1',
@@ -56,8 +165,8 @@ function msingif_photos_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width'  => variable_get('msingif_photo_image__thumb_width', 280),
-          'height' => variable_get('msingif_photo_image__thumb_height', 280),
+          'width'  => variable_get('msingif_photo_image_thumb_width', 280),
+          'height' => variable_get('msingif_photo_image_thumb_height', 280),
           'upscale' => 0,
         ),
         'weight' => '1',
@@ -79,8 +188,8 @@ function msingif_photos_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width'  => variable_get('msingif_photo_image__thumb_width', 620),
-          'height' => variable_get('msingif_photo_image__thumb_height', 465),
+          'width'  => variable_get('msingif_photo_image_thumb_width', 620),
+          'height' => variable_get('msingif_photo_image_thumb_height', 465),
           'upscale' => 0,
         ),
         'weight' => '1',
@@ -90,3 +199,4 @@ function msingif_photos_image_default_styles() {
 
   return $styles;
 }
+
