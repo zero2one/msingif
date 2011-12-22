@@ -140,13 +140,39 @@ function msingif_photos_multi_upload_form_submit($form, &$form_state) {
  * - photo_block : The image style for photo's shown in blocks.
  * - photo_view  : The image style for photo pages (full size view).
  * - photo_thumb : The image style for photo overviews.
+ * 
+ * The possible styles and there default config are located in 
+ * _msingif_photos_style_get_config()
+ * 
+ * @param $reset
+ *   (optional) If TRUE, all the style defeinitions will be recreated
+ * 
+ * @return array
  */
-function msingif_photos_image_default_styles() {
-  $styles = array();
+function msingif_photos_image_default_styles($reset = FALSE) {
+  static $styles = array();
+  
+  if(empty($styles)) {
+    $types = _msingif_photos_style_get_config();
+  
+    foreach($types AS $type => $config) {
+      $styles[$type] = array(
+        'name' => $type,
+        'effects' => array(),
+      );
+      $styles[$type]['effects'][1] = _msingif_photos_image_get_style_definition(
+        $config['effect'], 
+        $config['width'], 
+        $config['height']
+      );
+    }
+  }
+  
+  return $styles;
 
   // Exported image style: photo_block
   $styles['photo_thumb'] = array(
-    'name' => 'photo_block',
+    'name' => 'photo_thumb',
     'effects' => array(
       1 => array(
         'label' => 'Scale',
@@ -158,8 +184,8 @@ function msingif_photos_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width'  => _msingif_photos_style_get_size('photo_thumb', 'width'),
-          'height' => _msingif_photos_style_get_size('photo_thumb', 'height'),
+          'width'  => _msingif_photos_style_get_config('photo_thumb', 'width'),
+          'height' => _msingif_photos_style_get_config('photo_thumb', 'height'),
           'upscale' => 0,
         ),
         'weight' => '1',
@@ -181,8 +207,8 @@ function msingif_photos_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width'  => _msingif_photos_style_get_size('photo_block', 'width'),
-          'height' => _msingif_photos_style_get_size('photo_block', 'height'),
+          'width'  => _msingif_photos_style_get_config('photo_block', 'width'),
+          'height' => _msingif_photos_style_get_config('photo_block', 'height'),
           'upscale' => 0,
         ),
         'weight' => '1',
@@ -204,8 +230,8 @@ function msingif_photos_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width'  => _msingif_photos_style_get_size('photo_view', 'width'),
-          'height' => _msingif_photos_style_get_size('photo_view', 'height'),
+          'width'  => _msingif_photos_style_get_config('photo_view', 'width'),
+          'height' => _msingif_photos_style_get_config('photo_view', 'height'),
           'upscale' => 0,
         ),
         'weight' => '1',
@@ -217,28 +243,107 @@ function msingif_photos_image_default_styles() {
 }
 
 /**
+ * Get a predefined style
+ * 
+ * @param $type
+ *   Possible styles: 
+ *   - scale
+ *   - scalecrop
+ * @param $width
+ * @param $height
+ * 
+ * @return array
+ */
+function _msingif_photos_image_get_style_definition($effect, $width, $height) {
+  $styles = array(
+    'scale' => array(
+      'label' => 'Scale',
+      'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+      'effect callback' => 'image_scale_effect',
+      'dimensions callback' => 'image_scale_dimensions',
+      'form callback' => 'image_scale_form',
+      'summary theme' => 'image_scale_summary',
+      'module' => 'image',
+      'name' => 'image_scale',
+      'data' => array(
+        'width'  => $width,
+        'height' => $height,
+        'upscale' => 0,
+      ),
+      'weight' => '1',
+    ),
+    'scalecrop' => array(
+      'label' => 'Scale and crop',
+      'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+      'effect callback' => 'image_scale_and_crop_effect',
+      'dimensions callback' => 'image_resize_dimensions',
+      'form callback' => 'image_resize_form',
+      'summary theme' => 'image_resize_summary',
+      'module' => 'image',
+      'name' => 'image_scale_and_crop',
+      'data' => array(
+        'width'  => $width,
+        'height' => $height,
+      ),
+      'weight' => '1',
+    ),
+  );
+  
+  if(empty($styles[$effect])) {
+    return NULL;
+  }
+  
+  return $styles[$effect];
+}
+
+/**
  * Get the default image style sizes
  * 
  * Used to define the default sizes at one place
  * 
  * @param $style
- *   The style name
- * @param $direction
- *   The dimensions direction (width or height)
+ *   (optional) The style name.
+ *   If none is given, all style configs will be returned
+ * @param $part
+ *   (optional) What part of the default settings (effect, width or height)
+ *   If none is given, the full settings array will be returned.
  */
-function _msingif_photos_style_get_size($style, $direction) {
-  $dimensions = array(
-    'photo_thumb' => array('width' => 120, 'height' => 120),
-    'photo_block' => array('width' => 280, 'height' => 280),
-    'photo_view'  => array('width' => 620, 'height' => 465),
+function _msingif_photos_style_get_config($style = NULL, $part = NULL) {
+  static $loaded = FALSE;
+  static $settings = array(
+    'photo_thumb' => array('effect' => 'scale', 'width' => 120, 'height' => 120),
+    'photo_block' => array('effect' => 'scale', 'width' => 280, 'height' => 280),
+    'photo_view'  => array('effect' => 'scale', 'width' => 620, 'height' => 465),
   );
   
-  // check if size is supported
-  if(empty($dimensions[$style][$direction])) {
+  // load the defaults
+  if(!$loaded) {
+    foreach($settings AS $name => $defaults) {
+      foreach($defaults AS $key => $value) {
+        $settings[$name][$key] = variable_get('msingif_photos_style_' . $name . '_' . $key, $value);
+      }
+    }
+    $loaded = TRUE;
+  }
+  
+  if(is_null($style)) {
+    return $settings;
+  }
+  
+  // check if style is supported
+  if(empty($settings[$style])) {
     return NULL;
   }
   
-  $variable_key = 'msingif_photos_style_' . $style . '_' . $direction;
+  // check if full array is requested
+  if(is_null($part)) {
+    return $settings[$style];
+  }
   
-  return variable_get($variable_key, $dimensions[$style][$direction]); 
+  // check if part is supported
+  if(empty($settings[$style][$part])) {
+    return NULL;
+  }
+  
+  return $settings[$style][$part]; 
 }

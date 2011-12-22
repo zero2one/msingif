@@ -28,8 +28,20 @@ function msingif_photos_settings_form($form, &$form_state) {
     ),
   );
   
-  $styles = msingif_photos_image_default_styles();
-  foreach($styles AS $name => $style) {
+  $effects = array(
+    'scale'     => t('Scale'),
+    'scalecrop' => t('Scale and Crop'),
+  );
+  $effects_info = array(
+    t('Choose the image effect:'),
+    t('Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.'),
+    t('Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.'),
+  );
+  $effects_info = implode('<br />', $effects_info);
+  
+  // create the settings form parts for every style type
+  $styles = _msingif_photos_style_get_config();
+  foreach($styles AS $name => $config) {
     $title = (empty($infos[$name]['title'])) 
       ? $name
       : $infos[$name]['title'];
@@ -44,21 +56,31 @@ function msingif_photos_settings_form($form, &$form_state) {
     $form[$name]['info'] = array(
       '#markup'        => '<p>' . $info . '</p>',
     );
+    $form[$name]['msingif_photos_style_' . $name . '_effect'] = array(
+      '#type'          => 'select',
+      '#title'         => t('Effect'),
+      '#description'   => $effects_info,
+      '#options'       => $effects,
+      '#default_value' => $config['effect'],
+      '#required'      => TRUE,
+    );
     $form[$name]['msingif_photos_style_' . $name . '_width'] = array(
       '#type'          => 'textfield',
       '#title'         => t('Image width'),
       '#description'   => t('Define the display width'),
-      '#default_value' => _msingif_photos_style_get_size($name, 'width'),
+      '#default_value' => $config['width'],
       '#size'          => 4,
       '#maxlength'     => 4,
+      '#required'      => TRUE,
     );
     $form[$name]['msingif_photos_style_' . $name . '_height'] = array(
       '#type'          => 'textfield',
       '#title'         => t('Image height'),
       '#description'   => t('Define the display height'),
-      '#default_value' => _msingif_photos_style_get_size($name, 'height'),
+      '#default_value' => $config['height'],
       '#size'          => 4,
       '#maxlength'     => 4,
+      '#required'      => TRUE,
     );
   }
   
@@ -78,7 +100,8 @@ function msingif_photos_settings_form($form, &$form_state) {
  */
 function msingif_photos_settings_form_validate($form, &$form_state) {
   // image size
-  $image_size = _msingif_photos_settings_styles_keys();
+  $image_size = _msingif_photos_settings_styles_keys(TRUE);
+  
   foreach($image_size AS $size) {
     $value = $form_state['values'][$size];
     
@@ -99,12 +122,16 @@ function msingif_photos_settings_form_submit($form, $form_state) {
 
   // image size
   $image_size = _msingif_photos_settings_styles_keys();
+  
   foreach($image_size AS $size) {
     if(empty($values[$size])) {
       variable_set($size, NULL);
     }
     else {
-      variable_set($size, (int)$values[$size]);
+      if(is_numeric($values[$size])) {
+        $values[$size] = (int)$values[$size];
+      }
+      variable_set($size, $values[$size]);
     }
   }
   
@@ -126,17 +153,21 @@ function msingif_photos_settings_form_submit($form, $form_state) {
 /**
  * Get all the possible image size variable keys
  * 
- * @param  void
+ * @param  $no_effects
+ *   (optional) should effects be excluded, default FALSE
  * 
  * @return array
  */
-function _msingif_photos_settings_styles_keys() {
+function _msingif_photos_settings_styles_keys($no_effects = FALSE) {
   $keys = array();
   
   if(empty($keys)) {
-    $styles = msingif_photos_image_default_styles();
+    $styles = _msingif_photos_style_get_config();
     
     foreach($styles AS $name => $style) {
+      if(!$no_effects) {
+        $keys[] = 'msingif_photos_style_' . $name . '_effect';
+      }
       $keys[] = 'msingif_photos_style_' . $name . '_width';
       $keys[] = 'msingif_photos_style_' . $name . '_height';
     }
