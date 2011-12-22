@@ -97,6 +97,18 @@ function msingif_photos_views_default_views() {
 
   /* Display: Album photos */
   $handler = $view->new_display('block', 'Album photos', 'overview');
+
+  /* Display: Album photo reference */
+  $handler = $view->new_display('references', 'Album photo reference', 'album_photo_references');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['display_description'] = 'Used to select the album photo';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'references_style';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'references_fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $translatables['photo_album'] = array(
     t('Master'),
     t('more'),
@@ -107,6 +119,8 @@ function msingif_photos_views_default_views() {
     t('Desc'),
     t('All'),
     t('Album photos'),
+    t('Album photo reference'),
+    t('Used to select the album photo'),
   );
   $export['photo_album'] = $view;
 
@@ -229,12 +243,14 @@ function msingif_photos_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'photo_album' => 'photo_album',
   );
-  /* Filter criterion: Content: Promoted to front page */
-  $handler->display->display_options['filters']['promote']['id'] = 'promote';
-  $handler->display->display_options['filters']['promote']['table'] = 'node';
-  $handler->display->display_options['filters']['promote']['field'] = 'promote';
-  $handler->display->display_options['filters']['promote']['relationship'] = 'reverse_field_photo_album_node';
-  $handler->display->display_options['filters']['promote']['value'] = '1';
+  /* Filter criterion: Content: Album photo (field_photo_album_front) */
+  $handler->display->display_options['filters']['field_photo_album_front_value']['id'] = 'field_photo_album_front_value';
+  $handler->display->display_options['filters']['field_photo_album_front_value']['table'] = 'field_data_field_photo_album_front';
+  $handler->display->display_options['filters']['field_photo_album_front_value']['field'] = 'field_photo_album_front_value';
+  $handler->display->display_options['filters']['field_photo_album_front_value']['relationship'] = 'reverse_field_photo_album_node';
+  $handler->display->display_options['filters']['field_photo_album_front_value']['value'] = array(
+    1 => '1',
+  );
 
   /* Display: Album overview */
   $handler = $view->new_display('page', 'Album overview', 'page_overview');
