@@ -198,7 +198,7 @@ function msingif_photos_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -265,7 +265,7 @@ function msingif_photos_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '4',
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -371,6 +371,57 @@ function msingif_photos_field_default_fields() {
         ),
         'type' => 'image_image',
         'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-photo-weight'
+  $fields['node-photo-weight'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'weight',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'weight',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'weight_weight',
+    ),
+    'field_instance' => array(
+      'bundle' => 'photo',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'weight',
+      'label' => 'Weight',
+      'required' => FALSE,
+      'settings' => array(
+        'range' => '50',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'weight',
+        'settings' => array(),
+        'type' => 'weight_weight_widget',
+        'weight' => 7,
       ),
     ),
   );
@@ -552,6 +603,7 @@ function msingif_photos_field_default_fields() {
   t('If you select this, the photo will be used as the album photo and will be displayed in the album overview.');
   t('Photo');
   t('Show in highlighted photos block');
+  t('Weight');
 
   return $fields;
 }

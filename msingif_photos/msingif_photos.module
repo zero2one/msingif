@@ -47,7 +47,8 @@ function msingif_photos_menu() {
 */
 function msingif_photos_admin_paths() {
   $paths = array(
-    'node/*/add-photos' => TRUE,
+    'node/*/add-photos'    => TRUE,
+    'node/*/manage-photos' => TRUE,
   );
   return $paths;
 }
