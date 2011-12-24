@@ -97,18 +97,6 @@ function msingif_photos_views_default_views() {
 
   /* Display: Album photos */
   $handler = $view->new_display('block', 'Album photos', 'overview');
-
-  /* Display: Album photo reference */
-  $handler = $view->new_display('references', 'Album photo reference', 'album_photo_references');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['display_description'] = 'Used to select the album photo';
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'references_style';
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'references_fields';
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $translatables['photo_album'] = array(
     t('Master'),
     t('more'),
@@ -119,8 +107,6 @@ function msingif_photos_views_default_views() {
     t('Desc'),
     t('All'),
     t('Album photos'),
-    t('Album photo reference'),
-    t('Used to select the album photo'),
   );
   $export['photo_album'] = $view;
 
