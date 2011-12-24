@@ -26,7 +26,8 @@ function msingif_photos_menu() {
     'page arguments'   => array('msingif_photos_multi_upload_form', 1),
     'access callback'  => 'msingif_photos_multi_upload_access',
     'access arguments' => array(1),
-    'type'             => MENU_LOCAL_TASK
+    'type'             => MENU_LOCAL_TASK,
+    'weight'           => 3,
   );
   
   $items['admin/config/msingif/photos'] = array(
@@ -40,6 +41,34 @@ function msingif_photos_menu() {
   );
   
   return $items;
+}
+
+/**
+ * Implements hook_menu_alter()
+ * 
+ * Adds the management view as a tab to the photo album node
+ */
+function msingif_photos_menu_alter(&$items) {
+  $items['node/%views_arg/manage-photos']['title'] = 'Manage photos';
+  $items['node/%views_arg/manage-photos']['access callback'] = 'msingif_photos_multi_upload_access';
+  $items['node/%views_arg/manage-photos']['access arguments'] = array(1);
+  $items['node/%views_arg/manage-photos']['type'] = MENU_LOCAL_TASK;
+  $items['node/%views_arg/manage-photos']['weight'] = 4;
+}
+
+/**
+ * Implemens hook_module_implements_alter()
+ * 
+ * Pushes the menu alter to the end of the hooks
+ */
+function msingif_photos_module_implements_alter(&$implementations, $hook) {
+  switch($hook) {
+    case 'menu_alter':
+      $group = $implementations['msingif_photos'];
+      unset($implementations['msingif_photos']);
+      $implementations['msingif_photos'] = $group;  
+      break;
+  }
 }
 
 /**
@@ -59,6 +88,7 @@ function msingif_photos_admin_paths() {
  * Access callback for the add-photos tab
  * 
  * @param  $node
+ *   Node object or nid
  * 
  * @return bool
  * 
@@ -68,6 +98,13 @@ function msingif_photos_multi_upload_access($node) {
   // check create access
   if(!user_access('create photo content') && !user_access('administer nodes')) {
     return FALSE;
+  }
+  
+  if(is_numeric($node)) {
+    $node = node_load($node);
+    if(!$node) {
+      return FALSE;
+    }
   }
   
   // check content type
