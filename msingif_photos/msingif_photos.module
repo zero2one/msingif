@@ -7,6 +7,7 @@
 include_once('msingif_photos.features.inc');
 
 
+
 /**
  * Implements hook_menu()
  * 
@@ -86,10 +87,76 @@ function msingif_photos_multi_upload_access($node) {
 
 
 
+/**
+ * Node API
+ *****************************************************************************/
+/**
+ * Implements hook_node_insert()
+ */
+function msingif_photos_node_insert($node) {
+  _msingif_photos_node_photo_save($node);
+}
+
+/**
+ * Implements hook_node_update()
+ */
+function msingif_photos_node_update($node) {
+  _msingif_photos_node_photo_save($node);
+}
+
+/**
+ * Implements hook_node_delete()
+ * 
+ * Makes another photo (if any left) the album photo if the current album photo
+ * gets deleted
+ */
+function msingif_photos_node_delete($node) {
+  _msingif_photos_node_photo_delete($node);
+}
+
+/**
+ * Check if the node is indicated as an album node, if so make it so
+ * 
+ * This checks if a node should be the album photo.  
+ * If so, it will unset the current album photo (if any) 
+ * and make this the new album photo.
+ * 
+ * @param $node
+ * 
+ * @return void  
+ */
+function _msingif_photos_node_photo_save($node) {
+  if($node->type !== 'photo') {
+    return;
+  }
+  
+  if(empty($node->field_photo_album_front[LANGUAGE_NONE][0]['value'])) {
+    return;
+  }
+  
+  msingif_photos_set_photo_album_photo(
+    $node->field_photo_album[LANGUAGE_NONE][0]['nid'], 
+    $node
+  );
+}
+
+/**
+ * Checks, during deletion if a node is the album photo, if so make another 
+ * node (if any) the photo album
+ * 
+ * @param $node
+ * 
+ * @return void
+ */
+function _msingif_photos_node_photo_delete($node) {
+  // @todo: make this work ;-)
+}
+
+
 
 /**
  * Forms
- ****************************************************************************/
+ *****************************************************************************/
 /**
  * Form to upload multiple photo's at once for the given photo album
  * 
@@ -126,6 +193,102 @@ function msingif_photos_multi_upload_form(&$form, $form_state, $photo_album) {
 function msingif_photos_multi_upload_form_submit($form, &$form_state) {
   module_load_include('inc', 'msingif_photos', 'includes/upload_photos');
   _msingif_photos_multi_upload_form_submit($form, $form_state);
+}
+
+/**
+ * Get the currently album photo node ids
+ * 
+ * @param $album
+ *   The album node
+ * 
+ * @return array
+ */
+function msingif_photos_get_photo_album_photo($album_node) {
+  $nodes = array();
+  
+  $q = db_select('node', 'n');
+  $q->join('field_data_field_photo_album_front', 'photo', 'n.nid = photo.entity_id');
+  $q->join('field_data_field_photo_album ', 'album', 'n.nid = album.entity_id');
+  $q->fields('n', array('nid'));
+  $q->condition('photo.field_photo_album_front_value', 1, '=');
+  $q->condition('album.field_photo_album_nid', $album_node->nid, '=');
+  
+  $result = $q->execute();
+  foreach($result AS $row) {
+    $nodes[] = $row->nid;
+  }
+  
+  return $nodes;
+}
+
+/**
+ * Make a photo node the album photo
+ * 
+ * @param $album_node
+ *   The photo album (nid or node object)
+ * @param $photo_node
+ *   The photo node (nid or node object)
+ * 
+ * @return void
+ */
+function msingif_photos_set_photo_album_photo($album_node, $photo_node) {
+  // get the album node
+  if(is_numeric($album_node)) {
+    $album_node = node_load($album_node);
+  }
+  if(!$album_node || $album_node->type != 'photo_album') {
+    throw new Exception('Photo album not found or node is not a photo album.');
+  }
+  
+  // get the photo node
+  if(is_numeric($photo_node)) {
+    $photo_node = node_load($photo_node);
+  }
+  if(!$photo_node || $photo_node->type != 'photo') {
+    throw new Exception('Photo not found or node is not a photo.');
+  }
+  
+  // get the current album photo
+  $photo_is_front = FALSE;
+  $album_photos = msingif_photos_get_photo_album_photo($album_node);
+  
+  foreach($album_photos AS $album_photo) {
+    if((int)$album_photo === (int)$photo_node->nid) {
+      $photo_is_front = TRUE;
+    }
+    else {
+      msingif_photos_unset_photo_album_photo($album_photo);
+    }
+  }
+
+  // was the photo already the photo album?  
+  if($photo_is_front) {
+    return;
+  }
+  
+  $photo_node->field_photo_album_front[LANGUAGE_NONE][0]['value'] = 1;
+  node_save($photo_node);
+}
+
+/**
+ * Unset the front photo status of an album photo
+ * 
+ * @param $photo_node
+ *   The photo node id or object
+ * 
+ * @return void
+ */
+function msingif_photos_unset_photo_album_photo($photo_node) {
+  // get the photo node
+  if(is_numeric($photo_node)) {
+    $photo_node = node_load($photo_node);
+  }
+  if(!$photo_node || $photo_node->type != 'photo') {
+    throw new Exception('Photo not found or node is not a photo.');
+  }
+
+  $photo_node->field_photo_album_front[LANGUAGE_NONE][0]['value'] = 0;
+  node_save($photo_node);
 }
 
 

@@ -72,6 +72,10 @@ function _msingif_photos_multi_upload_form_submit($form, &$form_state) {
   // Album id
   $default->field_photo_album[$language][0]['nid'] = (int)$photo_album->nid;
   
+  // check if there is already an album photo
+  $album_photos = msingif_photos_get_photo_album_photo($photo_album);
+  $has_album_photo = !empty($album_photos);
+  
   // Prepare the file directory
   // @todo: get the file path from the photo node field settings
   $path = array('://msingif', 'photo', (int)$photo_album->nid);
@@ -107,6 +111,11 @@ function _msingif_photos_multi_upload_form_submit($form, &$form_state) {
     $node = clone $default;
     $node->title = $photo['name'];
     $node->field_photo_photo[$language][0] = (array)$file;
+    // make first photo album photo if there is none
+    if(!$has_album_photo) {
+      $node->field_photo_album_front[$language][0]['value'] = 1;
+      $has_album_photo = TRUE;
+    }
     
     node_save($node);
     $count++;
