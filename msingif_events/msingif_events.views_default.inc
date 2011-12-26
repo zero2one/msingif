@@ -61,7 +61,7 @@ function msingif_events_views_default_views() {
   $handler->display->display_options['fields']['field_event_date']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_event_date']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_event_date']['settings'] = array(
-    'format_type' => 'short',
+    'format_type' => 'msingif_short',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',

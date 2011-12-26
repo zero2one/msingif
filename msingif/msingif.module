@@ -23,3 +23,91 @@ function msingif_menu() {
   
   return $items;
 }
+
+
+
+/**
+ * Formatters
+ *****************************************************************************/
+
+/**
+ * Implements hook_date_format_types
+ */
+function msingif_date_format_types() {
+  // Define the core date format types.
+  return array(
+    'msingif_long'   => t('Date only long'), 
+    'msingif_medium' => t('Date only medium'), 
+    'msingif_short'  => t('Date only short'),
+  );
+}
+
+/**
+ * Implements hook_date_formats
+ */
+function msingif_date_formats() {
+  return array(
+    array(
+      'type' => 'msingif_short', 
+      'format' => 'm.d.Y', 
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'msingif_short', 
+      'format' => 'd.m.Y', 
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'msingif_short', 
+      'format' => 'm-d-Y', 
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'msingif_short', 
+      'format' => 'd-m-Y', 
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'msingif_short', 
+      'format' => 'm/d/Y', 
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'msingif_short', 
+      'format' => 'd/m/Y', 
+      'locales' => array(),
+    ),
+    
+    array(
+      'type' => 'msingif_medium', 
+      'format' => 'D, m-d-Y', 
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'msingif_medium', 
+      'format' => 'D, d-m-Y', 
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'msingif_medium', 
+      'format' => 'D, m/d/Y', 
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'msingif_medium', 
+      'format' => 'D, d/m/Y', 
+      'locales' => array(),
+    ),
+    
+    array(
+      'type' => 'msingif_long', 
+      'format' => 'l, Y F d', 
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'msingif_long', 
+      'format' => 'l, m F Y', 
+      'locales' => array(),
+    ),
+  );
+}

@@ -12,7 +12,7 @@ function msingif_photos_views_default_views() {
 
   $view = new view;
   $view->name = 'photo';
-  $view->description = '';
+  $view->description = 'Shows the highlighted photos';
   $view->tag = 'default';
   $view->base_table = 'node';
   $view->human_name = 'Photo';

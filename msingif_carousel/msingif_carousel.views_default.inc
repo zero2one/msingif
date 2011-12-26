@@ -12,7 +12,7 @@ function msingif_carousel_views_default_views() {
 
   $view = new view;
   $view->name = 'msingif_carousel';
-  $view->description = '';
+  $view->description = 'Shows the carousel items in a slideshow';
   $view->tag = 'default';
   $view->base_table = 'node';
   $view->human_name = 'Carousel';
