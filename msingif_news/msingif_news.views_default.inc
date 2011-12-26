@@ -23,6 +23,10 @@ function msingif_news_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'News';
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['use_more_always'] = TRUE;
+  $handler->display->display_options['use_more_text'] = 'more news';
+  $handler->display->display_options['link_display'] = 'page_overview';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -122,7 +126,7 @@ function msingif_news_views_default_views() {
   $translatables['news'] = array(
     t('Master'),
     t('News'),
-    t('more'),
+    t('more news'),
     t('Apply'),
     t('Reset'),
     t('Sort by'),
@@ -132,6 +136,7 @@ function msingif_news_views_default_views() {
     t('- All -'),
     t('Offset'),
     t('Overview page'),
+    t('more'),
     t('Overview block'),
     t('Grouped by month'),
   );

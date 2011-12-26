@@ -23,6 +23,10 @@ function msingif_events_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Upcoming events';
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['use_more_always'] = TRUE;
+  $handler->display->display_options['use_more_text'] = 'more events';
+  $handler->display->display_options['link_display'] = 'page_upcoming';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -145,6 +149,8 @@ function msingif_events_views_default_views() {
 
   /* Display: Block - Upcoming events */
   $handler = $view->new_display('block', 'Block - Upcoming events', 'block_upcoming');
+  $handler->display->display_options['defaults']['link_display'] = FALSE;
+  $handler->display->display_options['link_display'] = 'page_upcoming';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -156,7 +162,7 @@ function msingif_events_views_default_views() {
   $translatables['events'] = array(
     t('Master'),
     t('Upcoming events'),
-    t('more'),
+    t('more events'),
     t('Apply'),
     t('Reset'),
     t('Sort by'),
@@ -165,6 +171,7 @@ function msingif_events_views_default_views() {
     t('Items per page'),
     t('- All -'),
     t('Offset'),
+    t('more'),
     t('Past events'),
     t('Block - Upcoming events'),
   );

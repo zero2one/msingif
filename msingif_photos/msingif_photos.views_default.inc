@@ -78,13 +78,39 @@ function msingif_photos_views_default_views() {
   $handler->display->display_options['relationships']['field_photo_album_nid']['field'] = 'field_photo_album_nid';
   $handler->display->display_options['relationships']['field_photo_album_nid']['required'] = 0;
   $handler->display->display_options['relationships']['field_photo_album_nid']['delta'] = '-1';
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['relationship'] = 'field_photo_album_nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['nid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nid']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['nid']['link_to_node'] = 0;
   /* Field: Content: Photo */
   $handler->display->display_options['fields']['field_photo_photo']['id'] = 'field_photo_photo';
   $handler->display->display_options['fields']['field_photo_photo']['table'] = 'field_data_field_photo_photo';
   $handler->display->display_options['fields']['field_photo_photo']['field'] = 'field_photo_photo';
   $handler->display->display_options['fields']['field_photo_photo']['label'] = '';
   $handler->display->display_options['fields']['field_photo_photo']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_photo_photo']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['field_photo_photo']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_photo_photo']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_photo_photo']['alter']['replace_spaces'] = 0;
@@ -103,7 +129,7 @@ function msingif_photos_views_default_views() {
   $handler->display->display_options['fields']['field_photo_photo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_photo_photo']['settings'] = array(
     'image_style' => 'photo_block',
-    'image_link' => 'content',
+    'image_link' => '',
   );
   $handler->display->display_options['fields']['field_photo_photo']['field_api_classes'] = 0;
   /* Field: Content: Title */
@@ -164,6 +190,7 @@ function msingif_photos_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('field_photo_album'),
+    t('node/[nid]'),
     t('Highlights'),
     t('Highlighted photos'),
     t('more'),
