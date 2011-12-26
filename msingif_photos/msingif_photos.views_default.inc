@@ -11,6 +11,166 @@ function msingif_photos_views_default_views() {
   $export = array();
 
   $view = new view;
+  $view->name = 'photo';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Photo';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Photos';
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['use_more_always'] = TRUE;
+  $handler->display->display_options['use_more_text'] = 'more photos';
+  $handler->display->display_options['link_display'] = 'custom_url';
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '15';
+  $handler->display->display_options['style_plugin'] = 'slideshow';
+  $handler->display->display_options['style_options']['slideshow_type'] = 'views_slideshow_cycle';
+  $handler->display->display_options['style_options']['slideshow_skin'] = 'default';
+  $handler->display->display_options['style_options']['skin_info'] = array(
+    'class' => 'default',
+    'name' => 'Default',
+    'module' => 'views_slideshow',
+    'path' => '',
+    'stylesheets' => array(),
+  );
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['weight'] = '1';
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['type'] = 'views_slideshow_pager_fields';
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['views_slideshow_pager_fields_fields'] = array(
+    'field_photo_photo' => 0,
+    'title_1' => 0,
+  );
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_controls']['weight'] = '1';
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_controls']['type'] = 'views_slideshow_controls_text';
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_slide_counter']['weight'] = '1';
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_pager']['weight'] = '1';
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_pager']['type'] = 'views_slideshow_pager_fields';
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_pager']['views_slideshow_pager_fields_fields'] = array(
+    'field_photo_photo' => 0,
+    'title_1' => 0,
+  );
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_controls']['weight'] = '1';
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_controls']['type'] = 'views_slideshow_controls_text';
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_slide_counter']['weight'] = '1';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['timeout'] = '5000';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['speed'] = '700';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['delay'] = '0';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['start_paused'] = 0;
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['remember_slide_days'] = '1';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['items_per_slide'] = '1';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['wait_for_image_load_timeout'] = '3000';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['cleartype'] = 0;
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['cleartypenobg'] = 0;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Content: Album (field_photo_album) */
+  $handler->display->display_options['relationships']['field_photo_album_nid']['id'] = 'field_photo_album_nid';
+  $handler->display->display_options['relationships']['field_photo_album_nid']['table'] = 'field_data_field_photo_album';
+  $handler->display->display_options['relationships']['field_photo_album_nid']['field'] = 'field_photo_album_nid';
+  $handler->display->display_options['relationships']['field_photo_album_nid']['required'] = 0;
+  $handler->display->display_options['relationships']['field_photo_album_nid']['delta'] = '-1';
+  /* Field: Content: Photo */
+  $handler->display->display_options['fields']['field_photo_photo']['id'] = 'field_photo_photo';
+  $handler->display->display_options['fields']['field_photo_photo']['table'] = 'field_data_field_photo_photo';
+  $handler->display->display_options['fields']['field_photo_photo']['field'] = 'field_photo_photo';
+  $handler->display->display_options['fields']['field_photo_photo']['label'] = '';
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_photo_photo']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_photo_photo']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_photo_photo']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_photo_photo']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_photo_photo']['settings'] = array(
+    'image_style' => 'photo_block',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_photo_photo']['field_api_classes'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
+  $handler->display->display_options['fields']['title_1']['table'] = 'node';
+  $handler->display->display_options['fields']['title_1']['field'] = 'title';
+  $handler->display->display_options['fields']['title_1']['relationship'] = 'field_photo_album_nid';
+  $handler->display->display_options['fields']['title_1']['label'] = '';
+  $handler->display->display_options['fields']['title_1']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title_1']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title_1']['link_to_node'] = 1;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Album photo (field_photo_album_front) */
+  $handler->display->display_options['filters']['field_photo_album_front_value']['id'] = 'field_photo_album_front_value';
+  $handler->display->display_options['filters']['field_photo_album_front_value']['table'] = 'field_data_field_photo_album_front';
+  $handler->display->display_options['filters']['field_photo_album_front_value']['field'] = 'field_photo_album_front_value';
+  $handler->display->display_options['filters']['field_photo_album_front_value']['value'] = array(
+    1 => '1',
+  );
+
+  /* Display: Highlights */
+  $handler = $view->new_display('block', 'Highlights', 'block');
+  $handler->display->display_options['display_description'] = 'Highlighted photos';
+  $handler->display->display_options['link_url'] = 'photos';
+  $translatables['photo'] = array(
+    t('Master'),
+    t('Photos'),
+    t('more photos'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('field_photo_album'),
+    t('Highlights'),
+    t('Highlighted photos'),
+    t('more'),
+  );
+  $export['photo'] = $view;
+
+  $view = new view;
   $view->name = 'photo_album';
   $view->description = 'Overview of all photo\'s belonging to an album';
   $view->tag = 'default';
@@ -111,7 +271,8 @@ function msingif_photos_views_default_views() {
     'field_photo_photo' => 'field_photo_photo',
     'title' => 'title',
     'edit_node' => 'edit_node',
-    'delete_node' => 'delete_node',
+    'delete_node' => 'edit_node',
+    'weight' => 'weight',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
@@ -131,10 +292,17 @@ function msingif_photos_views_default_views() {
     ),
     'edit_node' => array(
       'align' => '',
-      'separator' => '',
+      'separator' => ' | ',
       'empty_column' => 0,
     ),
     'delete_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'weight' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -200,7 +368,7 @@ function msingif_photos_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Operations';
   $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['edit_node']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['edit_node']['alter']['absolute'] = 0;
@@ -279,7 +447,7 @@ function msingif_photos_views_default_views() {
     t('Manage album photos'),
     t('Photo'),
     t('Title'),
-    t('Actions'),
+    t('Operations'),
     t('Order'),
   );
   $export['photo_album'] = $view;
