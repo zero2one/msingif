@@ -213,7 +213,15 @@ function _msingif_photos_node_photo_delete($node) {
  * Forms
  *****************************************************************************/
 /**
- * Form to upload multiple photo's at once for the given photo album
+ * Redirect a user to the multi photo upload form when finishing creation of
+ * a new photo album.
+ */
+function msingif_photos_form_alter(&$form, $form_state) {
+  //var_dump($form, $form_state);
+}
+ 
+/**
+ * Form to upload multiple photos at once for the given photo album
  * 
  * Is a wrapper around the _msingif_photos_multi_upload_form() function.
  * 
@@ -355,7 +363,7 @@ function msingif_photos_unset_photo_album_photo($photo_node) {
  * Implements hook_image_default_styles().
  * 
  * Provides 3 new image styles:
- * - photo_block : The image style for photo's shown in blocks.
+ * - photo_block : The image style for photos shown in blocks.
  * - photo_view  : The image style for photo pages (full size view).
  * - photo_thumb : The image style for photo overviews.
  * 
@@ -565,3 +573,56 @@ function _msingif_photos_style_get_config($style = NULL, $part = NULL) {
   
   return $settings[$style][$part]; 
 }
+
+
+
+/**
+ * Views
+ *****************************************************************************/
+/**
+ * Implements hook_views_pre_render()
+ * 
+ * Adds "add" buttons to empty views:
+ * - Photo albums overview
+ * - Album photos overview
+ */
+function msingif_photos_preprocess_views_view(&$vars) {
+  $view         = $vars['view'];
+  $view_name    = $vars['name'];
+  $view_display = $vars['display_id']; 
+  
+  //var_dump($view_name, $view_display);
+  //var_dump($view->result, $vars['empty']);
+  
+  if($view_name == 'photo_albums' && $view_display == 'page_overview') {
+    if(!user_access('create photo_album content')) {
+      return;
+    }
+    
+    if(empty($view->result)) {
+      $output = array();
+      $output[] = t('Please add your first Photo album to get started.');
+      $output[] = '<div class="buttons">'. l('Add Photo album', 'node/add/photo-album') . '</div>';
+      $vars['empty'] = implode(PHP_EOL, $output);
+    }
+    return;
+  }
+  
+  if($view_name == 'photo_album' && $view_display == 'overview') {
+    $nid = arg(1);
+    if(!msingif_photos_multi_upload_access($nid)) {
+      return;
+    }
+
+    if(empty($view->result)) {
+      $output = array();
+      $output[] = t('Please add Photos to this album to get started.');
+      $output[] = '<div class="buttons">'. l('Add Photo', 'node/' . $nid . '/add-photos') . '</div>';
+      $vars['empty'] = implode(PHP_EOL, $output);
+    }
+    return;
+  }
+}
+
+
+

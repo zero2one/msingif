@@ -217,6 +217,14 @@ function msingif_photos_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = 'No photos in this album.';
+  $handler->display->display_options['empty']['area']['format'] = 'plain_text';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Field: Content: Photo */
   $handler->display->display_options['fields']['field_photo_photo']['id'] = 'field_photo_photo';
   $handler->display->display_options['fields']['field_photo_photo']['table'] = 'field_data_field_photo_photo';
@@ -469,6 +477,7 @@ function msingif_photos_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('No photos in this album.'),
     t('All'),
     t('Album photos'),
     t('Manage album photos'),
