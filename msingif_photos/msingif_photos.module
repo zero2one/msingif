@@ -213,14 +213,6 @@ function _msingif_photos_node_photo_delete($node) {
  * Forms
  *****************************************************************************/
 /**
- * Redirect a user to the multi photo upload form when finishing creation of
- * a new photo album.
- */
-function msingif_photos_form_alter(&$form, $form_state) {
-  //var_dump($form, $form_state);
-}
- 
-/**
  * Form to upload multiple photos at once for the given photo album
  * 
  * Is a wrapper around the _msingif_photos_multi_upload_form() function.
@@ -602,7 +594,9 @@ function msingif_photos_preprocess_views_view(&$vars) {
     if(empty($view->result)) {
       $output = array();
       $output[] = t('Please add your first Photo album to get started.');
-      $output[] = '<div class="buttons">'. l('Add Photo album', 'node/add/photo-album') . '</div>';
+      $output[] = '<ul class="action-links"><li>' 
+        . l('Add Photo album', 'node/add/photo-album') 
+        . '</li></ul>';
       $vars['empty'] = implode(PHP_EOL, $output);
     }
     return;
@@ -617,7 +611,9 @@ function msingif_photos_preprocess_views_view(&$vars) {
     if(empty($view->result)) {
       $output = array();
       $output[] = t('Please add Photos to this album to get started.');
-      $output[] = '<div class="buttons">'. l('Add Photo', 'node/' . $nid . '/add-photos') . '</div>';
+      $output[] = '<ul class="action-links"><li>'
+        . l('Add Photos', 'node/' . $nid . '/add-photos') 
+        . '</li></ul>';
       $vars['empty'] = implode(PHP_EOL, $output);
     }
     return;
