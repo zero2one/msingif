@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2011-12-29 16:19+0100\n"
-"PO-Revision-Date: 2011-12-29 17:01+0100\n"
+"PO-Revision-Date: 2011-12-29 17:11+0100\n"
 "Last-Translator: Peter Decuyper <peter@serial-graphics.be>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -318,8 +318,4 @@ msgstr "Opladen"
 #: includes/upload_photos.inc:95
 msgid "Upload of %photo failed"
 msgstr "Opladen van %photo niet geslaagd"
-
-#: includes/upload_photos.inc:124
-msgid "1 photo uploaded."
-msgid_plural "@count photo's uploaded"
 
