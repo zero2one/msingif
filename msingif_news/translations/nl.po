@@ -1,0 +1,104 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  msingif_news.features.field.inc: n/a
+#  msingif_news.features.inc: n/a
+#  msingif_news.views_default.inc: n/a
+#  msingif_news.info: n/a
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2011-12-29 16:18+0100\n"
+"PO-Revision-Date: 2011-12-29 16:42+0100\n"
+"Last-Translator: Peter Decuyper <peter@serial-graphics.be>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: msingif_news.features.field.inc:87
+msgid "Body"
+msgstr "Inhoud"
+
+#: msingif_news.features.inc:33
+#: msingif_news.views_default.inc:128
+#: msingif_news.info:0
+msgid "News"
+msgstr "Nieuws"
+
+#: msingif_news.features.inc:35
+msgid "Use a <em>news item</em> to post date related stories."
+msgstr "Gebruik een <em>nieuws</em> item om datum gerelateerde verhalen te plaatsen."
+
+#: msingif_news.features.inc:37
+msgid "Title"
+msgstr "Titel"
+
+#: msingif_news.views_default.inc:127
+msgid "Master"
+msgstr "Hoofd"
+
+#: msingif_news.views_default.inc:129
+msgid "more news"
+msgstr "meer nieuws"
+
+#: msingif_news.views_default.inc:130
+msgid "Apply"
+msgstr "Toepassen"
+
+#: msingif_news.views_default.inc:131
+msgid "Reset"
+msgstr "Terug zetten"
+
+#: msingif_news.views_default.inc:132
+msgid "Sort by"
+msgstr "Sorteer op"
+
+#: msingif_news.views_default.inc:133
+msgid "Asc"
+msgstr "Oplopend"
+
+#: msingif_news.views_default.inc:134
+msgid "Desc"
+msgstr "Aflopend"
+
+#: msingif_news.views_default.inc:135
+msgid "Items per page"
+msgstr "Aantal items per pagina"
+
+#: msingif_news.views_default.inc:136
+msgid "- All -"
+msgstr "- Alle -"
+
+#: msingif_news.views_default.inc:137
+msgid "Offset"
+msgstr "Offset"
+
+#: msingif_news.views_default.inc:138
+msgid "Overview page"
+msgstr "Overzicht pagina"
+
+#: msingif_news.views_default.inc:139
+msgid "more"
+msgstr "meer"
+
+#: msingif_news.views_default.inc:140
+msgid "Overview block"
+msgstr "Overzicht blok"
+
+#: msingif_news.views_default.inc:141
+msgid "Grouped by month"
+msgstr "Gegroepeerd per maand"
+
+#: msingif_news.info:0
+msgid "Provides news content type, a news overview page and news blocks"
+msgstr "Voorziet nieuws inhoud type, nieuws overzicht pagina en nieuws navigatie blok."
+
+#: msingif_news.info:0
+msgid "Msingi Features"
+msgstr "Msingi Features"
+

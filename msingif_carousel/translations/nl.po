@@ -1,0 +1,155 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  msingif_carousel.admin.inc: n/a
+#  msingif_carousel.context.inc: n/a
+#  msingif_carousel.module: n/a
+#  msingif_carousel.features.field.inc: n/a
+#  msingif_carousel.features.inc: n/a
+#  msingif_carousel.views_default.inc: n/a
+#  msingif_carousel.info: n/a
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2011-12-29 16:18+0100\n"
+"PO-Revision-Date: 2011-12-29 16:33+0100\n"
+"Last-Translator: Peter Decuyper <peter@serial-graphics.be>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: msingif_carousel.admin.inc:18
+msgid "Carousel image style"
+msgstr "Carousel afbeelding stijl"
+
+#: msingif_carousel.admin.inc:21
+msgid "Configure the image size for display on the home page.<br />The image will be scaled and cropped."
+msgstr "Stel de groote in voor het afbeelden op de home pagina.<br />De afbeelding zal geschaald en bijgeknipt worden."
+
+#: msingif_carousel.admin.inc:25
+msgid "Image width"
+msgstr "Afbeelding breedte"
+
+#: msingif_carousel.admin.inc:26
+msgid "Define the display width"
+msgstr "Stel de weergave breedte in"
+
+#: msingif_carousel.admin.inc:33
+msgid "Image height"
+msgstr "Afbeelding hoogte"
+
+#: msingif_carousel.admin.inc:34
+msgid "Define the display height"
+msgstr "Stel de weergave hoogte in"
+
+#: msingif_carousel.admin.inc:43
+msgid "Save configuration"
+msgstr "Instellingen opslaan"
+
+#: msingif_carousel.admin.inc:64
+msgid "The value should be a numeric value."
+msgstr "De waarde moet numeriek zijn."
+
+#: msingif_carousel.admin.inc:100
+msgid "Configuration saved."
+msgstr "Instellingen opgeslagen."
+
+#: msingif_carousel.context.inc:42
+msgid "Adds a carousel to the home page"
+msgstr "Voegt een carousel toe aan de home pagina."
+
+#: msingif_carousel.context.inc:43
+#: msingif_carousel.module:18
+msgid "Carousel"
+msgstr "Carousel"
+
+#: msingif_carousel.features.field.inc:245
+msgid "Description"
+msgstr "Beschrijving"
+
+#: msingif_carousel.features.field.inc:246
+msgid "Image"
+msgstr "Afbeelding"
+
+#: msingif_carousel.features.field.inc:247
+msgid "Link"
+msgstr "Link"
+
+#: msingif_carousel.features.field.inc:248
+msgid "Link the carousel item to an internal page or an external webpage (url)."
+msgstr "Link het carousel item aan een interne pagina of een externe webpagina (url)."
+
+#: msingif_carousel.features.field.inc:249
+msgid "This image is used as the background image for the front page carousel."
+msgstr "Deze afbeelding wordt gebruikt als de achtergrond afbeelding voor de home pagina carousel."
+
+#: msingif_carousel.features.inc:37
+msgid "Carousel item"
+msgstr "Carousel item"
+
+#: msingif_carousel.features.inc:39
+msgid "Use <em>carousel items</em> to add highlighted items to the front page carousel."
+msgstr "Gebruik <em>carousel items</em> om items toe te voegen aan de carousel op de home pagina."
+
+#: msingif_carousel.features.inc:41
+msgid "Title"
+msgstr "Titel"
+
+#: msingif_carousel.views_default.inc:232
+msgid "Master"
+msgstr "Hoofd"
+
+#: msingif_carousel.views_default.inc:233
+msgid "more"
+msgstr "meer"
+
+#: msingif_carousel.views_default.inc:234
+msgid "Apply"
+msgstr "Toepassen"
+
+#: msingif_carousel.views_default.inc:235
+msgid "Reset"
+msgstr "Terug zetten"
+
+#: msingif_carousel.views_default.inc:236
+msgid "Sort by"
+msgstr "Sorteer op"
+
+#: msingif_carousel.views_default.inc:237
+msgid "Asc"
+msgstr "Oplopend"
+
+#: msingif_carousel.views_default.inc:238
+msgid "Desc"
+msgstr "Aflopend"
+
+#: msingif_carousel.views_default.inc:239
+msgid "[field_carousel_link]"
+msgstr ""
+
+#: msingif_carousel.views_default.inc:240
+msgid "Front"
+msgstr "Home"
+
+#: msingif_carousel.views_default.inc:241
+#: msingif_carousel.info:0
+msgid "Front page carousel"
+msgstr "Home pagina carousel"
+
+#: msingif_carousel.module:19
+msgid "Configure carousel settings."
+msgstr "Carousel configuratie."
+
+#: msingif_carousel.info:0
+msgid "Adds a front page carousel."
+msgstr "Voegt een home pagine carousel toe."
+
+#: msingif_carousel.info:0
+msgid "Msingi Features"
+msgstr "Msingi Features"
+

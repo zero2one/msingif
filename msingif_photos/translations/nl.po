@@ -1,0 +1,325 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  msingif_photos.admin.inc: n/a
+#  msingif_photos.context.inc: n/a
+#  msingif_photos.views_default.inc: n/a
+#  msingif_photos.module: n/a
+#  msingif_photos.info: n/a
+#  includes/upload_photos.inc: n/a
+#  msingif_photos.features.field.inc: n/a
+#  msingif_photos.features.inc: n/a
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2011-12-29 16:19+0100\n"
+"PO-Revision-Date: 2011-12-29 17:01+0100\n"
+"Last-Translator: Peter Decuyper <peter@serial-graphics.be>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: msingif_photos.admin.inc:18
+msgid "Thumbnail image style"
+msgstr "Thumbnail afbeelding grootte"
+
+#: msingif_photos.admin.inc:19
+msgid "Configure the image size for display on the album page."
+msgstr "Stel de afbeelding grootte in voor weergave in een album overzicht."
+
+#: msingif_photos.admin.inc:22
+msgid "Block image style"
+msgstr "Blok afbeelding stijl"
+
+#: msingif_photos.admin.inc:23
+msgid "Configure the image size for display in a block."
+msgstr "Stel de afbeelding grootte in voor weergave in de gemarkeerde foto's blok."
+
+#: msingif_photos.admin.inc:26
+msgid "View image style"
+msgstr "Foto detail weergave stijl"
+
+#: msingif_photos.admin.inc:27
+msgid "Configure the image size for display on a photo node page."
+msgstr "Stel de afbeelding grootte in voor weergave op de foto detail pagina."
+
+#: msingif_photos.admin.inc:32
+msgid "Scale"
+msgstr "Verschalen"
+
+#: msingif_photos.admin.inc:33
+msgid "Scale and Crop"
+msgstr "Verschalen en bijsnijden"
+
+#: msingif_photos.admin.inc:36
+msgid "Choose the image effect:"
+msgstr "Kies het afbeelding effect:"
+
+#: msingif_photos.admin.inc:37
+msgid "Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated."
+msgstr "Verschalen zal de afbeelding verhouding respecteren. Het zal de afbeelding verschalen tot wanneer ze binnen de opgegeven kader past."
+
+#: msingif_photos.admin.inc:38
+msgid "Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image."
+msgstr "Verschalen en bijsnijden zal de afbeelding verschalen tot wanneer ze de volledige kader bedekt. De stukken buiten de kader worden dan afgeknipt."
+
+#: msingif_photos.admin.inc:49
+msgid "Configure the %style style."
+msgstr "Configureer %style."
+
+#: msingif_photos.admin.inc:61
+msgid "Effect"
+msgstr "Effect"
+
+#: msingif_photos.admin.inc:69
+msgid "Image width"
+msgstr "Afbeelding breedte"
+
+#: msingif_photos.admin.inc:70
+msgid "Define the display width"
+msgstr "Stel de weergave breedte in"
+
+#: msingif_photos.admin.inc:78
+msgid "Image height"
+msgstr "Afbeelding hoogte"
+
+#: msingif_photos.admin.inc:79
+msgid "Define the display height"
+msgstr "Stel de weergave hoogte in"
+
+#: msingif_photos.admin.inc:90
+msgid "Save configuration"
+msgstr "Instellingen opslaan"
+
+#: msingif_photos.admin.inc:109
+msgid "The value should be a numeric value."
+msgstr "De waarde moet numeriek zijn."
+
+#: msingif_photos.admin.inc:149
+msgid "Configuration saved."
+msgstr "Instellingen opgeslagen."
+
+#: msingif_photos.context.inc:45
+msgid "Photo album photos"
+msgstr "Album foto's"
+
+#: msingif_photos.context.inc:46
+#: msingif_photos.views_default.inc:185
+#: msingif_photos.module:34
+#: msingif_photos.info:0
+#: includes/upload_photos.inc:33
+msgid "Photos"
+msgstr "Foto's"
+
+#: msingif_photos.features.field.inc:596
+msgid "Album"
+msgstr "Album"
+
+#: msingif_photos.features.field.inc:597
+msgid "Album photo"
+msgstr "Album foto"
+
+#: msingif_photos.features.field.inc:598
+msgid "Body"
+msgstr "Inhoud"
+
+#: msingif_photos.features.field.inc:599
+msgid "Date"
+msgstr "Datum"
+
+#: msingif_photos.features.field.inc:600
+msgid "Date the photos where taken."
+msgstr "Datum dat de foto's genomen zijn."
+
+#: msingif_photos.features.field.inc:601
+msgid "Description"
+msgstr "Beschrijving"
+
+#: msingif_photos.features.field.inc:602
+msgid "Highlighted photos will be shown in the highlighted photos carousel block."
+msgstr "Gemarkeerde foto's worden getoond in de gemarkeerde foto blok."
+
+#: msingif_photos.features.field.inc:603
+msgid "If you select this, the photo will be used as the album photo and will be displayed in the album overview."
+msgstr "Gebruik dit om aan te duiden welke foto in het album overzicht moet gebruikt worden (1 foto per album)."
+
+#: msingif_photos.features.field.inc:604
+#: msingif_photos.features.inc:37
+#: msingif_photos.views_default.inc:484
+msgid "Photo"
+msgstr "Foto"
+
+#: msingif_photos.features.field.inc:605
+msgid "Show in highlighted photos block"
+msgstr "Toon in de gemarkeerde foto's blok"
+
+#: msingif_photos.features.field.inc:606
+msgid "Weight"
+msgstr "Volgorde"
+
+#: msingif_photos.features.inc:39
+msgid "Add one ore more <em>photo's</em> to a photo album."
+msgstr "Voeg één of meerdere <em>foto's</em> toe aan een foto album."
+
+#: msingif_photos.features.inc:41;49
+#: msingif_photos.views_default.inc:485
+msgid "Title"
+msgstr "Titel"
+
+#: msingif_photos.features.inc:45
+msgid "Photo album"
+msgstr "Foto album"
+
+#: msingif_photos.features.inc:47
+msgid "Use <em>photo album</em> to group one or more photo's."
+msgstr "Gebruik een <em>foto album</em> om meerdere foto's te groeperen."
+
+#: msingif_photos.views_default.inc:184;473;669
+msgid "Master"
+msgstr "Hoofd"
+
+#: msingif_photos.views_default.inc:186
+msgid "more photos"
+msgstr "meer foto's"
+
+#: msingif_photos.views_default.inc:187;475;672
+msgid "Apply"
+msgstr "Toepassen"
+
+#: msingif_photos.views_default.inc:188;476;673
+msgid "Reset"
+msgstr "Terug zetten"
+
+#: msingif_photos.views_default.inc:189;477;674
+msgid "Sort by"
+msgstr "Sorteer op"
+
+#: msingif_photos.views_default.inc:190;478;675
+msgid "Asc"
+msgstr "Oplopend"
+
+#: msingif_photos.views_default.inc:191;479;676
+msgid "Desc"
+msgstr "Aflopend"
+
+#: msingif_photos.views_default.inc:192;680
+msgid "field_photo_album"
+msgstr "field_photo_album"
+
+#: msingif_photos.views_default.inc:193;681
+msgid "node/[nid]"
+msgstr "node/[nid]"
+
+#: msingif_photos.views_default.inc:194
+msgid "Highlights"
+msgstr "Gemarkeerd"
+
+#: msingif_photos.views_default.inc:195
+msgid "Highlighted photos"
+msgstr "Gemarkeerde foto's"
+
+#: msingif_photos.views_default.inc:196;474;671
+msgid "more"
+msgstr "meer"
+
+#: msingif_photos.views_default.inc:480
+msgid "No photos in this album."
+msgstr "Geen foto's in dit album."
+
+#: msingif_photos.views_default.inc:481
+msgid "All"
+msgstr "Alle"
+
+#: msingif_photos.views_default.inc:482
+msgid "Album photos"
+msgstr "Album foto's"
+
+#: msingif_photos.views_default.inc:483
+msgid "Manage album photos"
+msgstr "Beheer album foto's"
+
+#: msingif_photos.views_default.inc:486
+msgid "Operations"
+msgstr "Handelingen"
+
+#: msingif_photos.views_default.inc:487
+msgid "Order"
+msgstr "Volgorde"
+
+#: msingif_photos.views_default.inc:670
+msgid "Photo albums"
+msgstr "Foto albums"
+
+#: msingif_photos.views_default.inc:677
+msgid "Items per page"
+msgstr "Items per pagina"
+
+#: msingif_photos.views_default.inc:678
+msgid "- All -"
+msgstr "- Alle -"
+
+#: msingif_photos.views_default.inc:679
+msgid "Offset"
+msgstr "Offset"
+
+#: msingif_photos.views_default.inc:682
+msgid "Album overview"
+msgstr "Album overzicht"
+
+#: msingif_photos.views_default.inc:683
+msgid "Album overview Block"
+msgstr "Album overzicht blok"
+
+#: msingif_photos.views_default.inc:684
+msgid "A list of all photo album names"
+msgstr "Een lijst van alle foto album namen."
+
+#: msingif_photos.module:631
+msgid "Please add your first Photo album to get started."
+msgstr "Geen foto albums. Voeg uw eerste foto album toe om te beginnen."
+
+#: msingif_photos.module:648
+msgid "Please add Photos to this album to get started."
+msgstr "Geen foto's. Voeg foto's toe aan dit album."
+
+#: msingif_photos.module:24
+msgid "Add photos"
+msgstr "Fotos toevoegen"
+
+#: msingif_photos.module:35
+msgid "Configure photos settings."
+msgstr "Foto instellingen."
+
+#: msingif_photos.module:52
+msgid "Manage photos"
+msgstr "Foto's beheren"
+
+#: msingif_photos.info:0
+msgid "Provides photo albums and photos"
+msgstr "Voorziet foto albums en foto's"
+
+#: msingif_photos.info:0
+msgid "Msingi Features"
+msgstr "Msingi Features"
+
+#: includes/upload_photos.inc:34
+msgid "Upload one or more photos."
+msgstr "Voeg één of meerdere foto's toe."
+
+#: includes/upload_photos.inc:44
+msgid "Upload"
+msgstr "Opladen"
+
+#: includes/upload_photos.inc:95
+msgid "Upload of %photo failed"
+msgstr "Opladen van %photo niet geslaagd"
+
+#: includes/upload_photos.inc:124
+msgid "1 photo uploaded."
+msgid_plural "@count photo's uploaded"
+

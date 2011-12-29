@@ -1,0 +1,49 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  msingif_page.features.field.inc: n/a
+#  msingif_page.features.inc: n/a
+#  msingif_page.info: n/a
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2011-12-29 16:19+0100\n"
+"PO-Revision-Date: 2011-12-29 16:44+0100\n"
+"Last-Translator: Peter Decuyper <peter@serial-graphics.be>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: msingif_page.features.field.inc:87
+msgid "Body"
+msgstr "Inhoud"
+
+#: msingif_page.features.inc:23
+msgid "Basic page"
+msgstr "Pagina"
+
+#: msingif_page.features.inc:25
+msgid "Use basic pages for your static content, such as an 'About us' page."
+msgstr "Gebruik <em>pagina</em> voor uw statische inhoud, zoals een 'Over ons' pagina."
+
+#: msingif_page.features.inc:27
+msgid "Title"
+msgstr "Titel"
+
+#: msingif_page.info:0
+msgid "Pages"
+msgstr "Pagina's"
+
+#: msingif_page.info:0
+msgid "Provides support for Basic pages"
+msgstr "Voorziet standaard pagina's."
+
+#: msingif_page.info:0
+msgid "Msingi Features"
+msgstr "Msingi Features"
+

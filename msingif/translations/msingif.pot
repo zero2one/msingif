@@ -1,0 +1,53 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  msingif.module: n/a
+#  msingif.info: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2011-12-29 16:15+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: msingif.module:39
+msgid "Date only long"
+msgstr ""
+
+#: msingif.module:40
+msgid "Date only medium"
+msgstr ""
+
+#: msingif.module:41
+msgid "Date only short"
+msgstr ""
+
+#: msingif.module:15
+msgid "Msingi features"
+msgstr ""
+
+#: msingif.module:16
+msgid "Msingi features configuration."
+msgstr ""
+
+#: msingif.info:0
+msgid "General"
+msgstr ""
+
+#: msingif.info:0
+msgid "Generic/shared functionalities."
+msgstr ""
+
+#: msingif.info:0
+msgid "Msingi Features"
+msgstr ""
+
