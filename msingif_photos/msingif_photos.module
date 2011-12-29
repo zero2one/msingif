@@ -572,6 +572,41 @@ function _msingif_photos_style_get_config($style = NULL, $part = NULL) {
  * Views
  *****************************************************************************/
 /**
+ * Implements hook_views_query_alter()
+ * 
+ * Adds the albums without photos to the overview page
+ */
+function msingif_photos_views_query_alter(&$view, &$query) {
+  $view_name    = $view->name;
+  $view_display = $view->current_display;
+  
+  if($view_name == 'photo_albums' && $view_display == 'page_overview') {
+    // add the OR for albums without a album photo
+    $cond1 = $query->where[0]['conditions'][2];
+    unset($query->where[0]['conditions'][2]);
+    $cond1['operator'] = '=';
+    
+    $cond2 = $cond1;
+    $cond2['value'] = NULL;
+    $cond2['operator'] = 'IS NULL';
+    
+    $conditions = array(
+      'conditions' => array(
+        $cond1, $cond2
+      ),
+      'args' => array(), 
+      'type' => 'OR',
+    );
+    $query->where[] = $conditions;
+    
+    // group by nid to avoid double album listing
+    $query->groupby[] = array('field' => 'field_photo_album_node');
+    
+    //var_dump($query); die;
+  }
+}
+ 
+/**
  * Implements hook_views_pre_render()
  * 
  * Adds "add" buttons to empty views:
