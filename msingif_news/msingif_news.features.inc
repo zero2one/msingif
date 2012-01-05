@@ -30,11 +30,11 @@ function msingif_news_views_api() {
 function msingif_news_node_info() {
   $items = array(
     'news' => array(
-      'name' => t('News'),
+      'name' => t('Nieuws'),
       'base' => 'node_content',
-      'description' => t('Use a <em>news item</em> to post date related stories.'),
+      'description' => t('Gebruik een <em>nieuws</em> item om datum gerelateerde verhalen te plaatsen.'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Titel'),
       'help' => '',
     ),
   );
