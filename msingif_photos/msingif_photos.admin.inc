@@ -13,20 +13,7 @@
  * @ingroup forms
  */
 function msingif_photos_settings_form($form, &$form_state) {
-  $infos = array(
-    'photo_thumb' => array(
-      'title' => t('Thumbnail image style'),
-      'info'  => t('Configure the image size for display on the album page.'),
-    ),
-    'photo_block' => array(
-      'title' => t('Block image style'),
-      'info'  => t('Configure the image size for display in a block.'),
-    ),
-    'photo_view' => array(
-      'title' => t('View image style'),
-      'info'  => t('Configure the image size for display on a photo node page.'),
-    ),
-  );
+  $infos = msingif_photos_image_default_styles_info();
   
   $effects = array(
     'scale'     => t('Scale'),

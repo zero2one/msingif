@@ -1,0 +1,10 @@
+core = "7.x"
+dependencies[] = views
+dependencies[] = media (>2)
+description = "Integrates the Photos module with the Media module."
+features[ctools][] = "views:views_default:3.0"
+features[views_view][] = "photo_media_browser"
+name = "Photos Media"
+package = "Msingi Features"
+project = "msingif_photos_media"
+version = "7.x-1.x-dev"

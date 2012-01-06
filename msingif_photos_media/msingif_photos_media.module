@@ -1,0 +1,66 @@
+<?php
+/**
+ * @file
+ * Code for the Photos Media integration feature.
+ */
+
+include_once('msingif_photos_media.features.inc');
+
+
+/**
+ * Implements hook_ctools_plugin_api().
+ *
+ * Lets CTools know which plugin APIs are implemented by Media module.
+ */
+function msingif_photos_media_ctools_plugin_api($module, $api) {
+  if ($module == 'file_entity' && $api == 'file_default_displays') {
+    return array(
+      'version' => 1,
+    );
+  }
+}
+
+/**
+ * Implements hook_file_default_displays().
+ *
+ * Provides default display configurations for media types.
+ *
+ * @see file_entity_schema()
+ */
+function msingif_photos_media_file_default_displays() {
+  $default_displays = array();
+
+  $default_image_styles = msingif_photos_image_default_styles();
+
+  foreach ($default_image_styles as $view_mode => $image_style) {
+    $display_name = 'image__' . $view_mode . '__file_image';
+    $default_displays[$display_name] = (object) array(
+      'api_version' => 1,
+      'name'        => $display_name,
+      'status'      => 1,
+      'weight'      => 5,
+      'settings'    => array(
+        'image_style' => $view_mode
+      ),
+    );
+  }
+
+  return $default_displays;
+}
+
+/**
+ * Implements hook_media_wysiwyg_allowed_view_modes_alter()
+ * 
+ * @TODO: make this work ;-)
+ */
+function _msingif_photos_media_media_wysiwyg_allowed_view_modes_alter(&$view_modes, $file) {
+  $styles = msingif_photos_image_default_styles();
+  $info   = msingif_photos_image_default_styles_info();
+  
+  foreach($styles AS $type => $style) {
+    $view_modes[$type] = array(
+      'label'           => $info[$type]['title'],
+      'custom settings' => TRUE,
+    );
+  }
+}

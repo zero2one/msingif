@@ -351,6 +351,30 @@ function msingif_photos_unset_photo_album_photo($photo_node) {
 /**
  * Image styles
  *****************************************************************************/
+/*
+ * Returns info about the available image styles
+ *
+ * @param void
+ * 
+ * @return array
+ */
+function msingif_photos_image_default_styles_info() {
+  return array(
+    'photo_thumb' => array(
+      'title' => t('Photo Thumbnail'),
+      'info'  => t('The photo size for display on the album overview page.'),
+    ),
+    'photo_block' => array(
+      'title' => t('Photo Block'),
+      'info'  => t('The image size for display in a block.'),
+    ),
+    'photo_view' => array(
+      'title' => t('Photo View'),
+      'info'  => t('The image size for display on a photo detail page.'),
+    ),
+  );
+}
+ 
 /**
  * Implements hook_image_default_styles().
  * 
